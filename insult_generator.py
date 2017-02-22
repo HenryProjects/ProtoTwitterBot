@@ -184,9 +184,13 @@ def insult_generator():
                "toad",
                "rascal",
                "basket-cockle"]
-    c1 = random.randint(0, 60)
-    c2 = random.randint(0, 62)
-    c3 = random.randint(0, 60)
+    c1 = random.randint(0, 59)
+    c2 = random.randint(0, 61)
+    c3 = random.randint(0, 59)
 
     insult = "Thou " + column1[c1] + " " + column2[c2] + " " + column3[c3] + "!"
     return insult
+
+
+if __name__ == "__main__":
+    insult_generator()
