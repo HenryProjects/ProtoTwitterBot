@@ -1,14 +1,14 @@
 import tweepy
 import random
-
+from credentials import keys
 
 class TwitterAPI:
     def __init__(self):
-        consumer_key = "key"
-        consumer_secret = "secret"
+        consumer_key = keys['consumer_key']
+        consumer_secret = keys['consumer_secret']
         auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-        access_token = "token"
-        access_token_secret = "secret"
+        access_token = keys['access_token']
+        access_token_secret = keys['access_secret']
         auth.set_access_token(access_token, access_token_secret)
         self.api = tweepy.API(auth)
 
