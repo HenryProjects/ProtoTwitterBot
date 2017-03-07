@@ -3,7 +3,7 @@
 import sqlite3
 
 
-def createDB(self):
+def createCheck():
     conn = sqlite3.connect("tweet_sequence.db")
     with conn:
         c = conn.cursor()
@@ -11,23 +11,23 @@ def createDB(self):
         conn.commit()
     c.close()
     conn.close()
-    setLtweet(self)
+    setLtweet()
 
 
-def setLtweet(self, id):
+def setLtweet():
     conn = sqlite3.connect("tweet_sequence.db")
     with conn:
         c = conn.cursor()
         c, count = countRecords(c)
         if count < 1:
-            self.lastTweet = id
-            c.execute("INSERT INTO tbl_sequence (last_tweet) VALUES (?)", (id,))
-            conn.commit()
+            # lTweet = id
+            # c.execute("INSERT INTO tbl_sequence (last_tweet) VALUES (?)", (id,))
+            # conn.commit()
             return -1
         else:
             c.execute("SELECT * FROM tbl_sequence ORDER BY last_tweet DESC LIMIT 1")
-            self.lastTweet = c.fetchone()[0]
-            return lastTweet
+            lTweet = c.fetchone()[0]
+            return lTweet
     c.close()
     conn.close()
 

@@ -1,9 +1,7 @@
-#!/usr/bin/env python3
-
 import tweepy
 import random
 from credentials import keys
-
+from freshness import createDB, setLtweet, logLtweet
 
 class TwitterAPI:
     def __init__(self):
@@ -17,8 +15,29 @@ class TwitterAPI:
 
     def tweet(self, message):
         self.api.update_status(status=message)
-        
-        
+
+
+    def trumpReply(self, new_trump_id, message):
+        self.api.update_status(status=message,in_reply_to_status_id=new_trump_id)
+
+
+    def scrapeTrump(self):
+        s = self.api.user_timeline(user_id='@realdonaldtrump',count=1)
+        new_trump_id = s.id
+        last_log_id = createCheck()
+        return new_trump_id, last_log_id
+
+
+def compareIDs():
+    new_trump_id, last_log_id = twitter.scrapeTrump()
+    if new_trump_id > last_log_id:
+        message = insult_generator()
+        twitter.trumpReply(new_trump_id, message)
+        logLtweet(new_trump_id)
+    else:
+        pass
+
+
 def insult_generator():
     column1 = ["artless",
                "bawdy",
@@ -212,4 +231,4 @@ def insult_generator():
 
 if __name__ == "__main__":
     twitter = TwitterAPI()
-    twitter.tweet(insult_generator())
+    compareIDs()
