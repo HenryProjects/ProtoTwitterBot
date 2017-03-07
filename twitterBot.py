@@ -1,7 +1,8 @@
 import tweepy
 import random
 from credentials import keys
-from freshness import createDB, setLtweet, logLtweet
+from freshness import createCheck, setLtweet, logLtweet
+from datetime import datetime
 
 class TwitterAPI:
     def __init__(self):
