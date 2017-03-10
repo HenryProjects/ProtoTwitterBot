@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import tweepy
 import random
 from credentials import keys
