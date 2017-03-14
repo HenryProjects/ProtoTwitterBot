@@ -1,9 +1,12 @@
-#!/usr/bin/env python3
-
 import tweepy
 import random
 from credentials import keys
+<<<<<<< HEAD
 from freshness import *
+=======
+from freshness import create_check, set_ltweet, log_ltweet
+
+>>>>>>> origin/master
 
 class TwitterAPI:
     def __init__(self):
@@ -18,6 +21,7 @@ class TwitterAPI:
     def tweet(self, message):
         self.api.update_status(status=message)
 
+<<<<<<< HEAD
 
     def trumpReply(self, new_trump_id, message):
         self.api.update_status(status=message,in_reply_to_status_id=new_trump_id)
@@ -36,6 +40,27 @@ def compareIDs():
         message = insult_generator()
         twitter.trumpReply(new_trump_id, message)
         logLtweet(new_trump_id)
+=======
+    def trump_reply(self, new_trump_id, message):
+        self.api.update_status(status=message, in_reply_to_status_id=new_trump_id)
+
+    def scrape_trump(self):
+        s_list = self.api.user_timeline(screen_name='@realdonaldtrump', count=1)
+        s = s_list[0]
+        new_trump_id = s.id
+        create_check()
+        last_log_id = set_ltweet()
+        return new_trump_id, last_log_id
+
+
+def compare_ids():
+    new_trump_id, last_log_id = twitter.scrape_trump()
+    if new_trump_id > last_log_id:
+        message = insult_generator()
+        twitter.trump_reply(new_trump_id, message)
+        print(new_trump_id)
+        log_ltweet(new_trump_id)
+>>>>>>> origin/master
     else:
         pass
 
@@ -233,4 +258,8 @@ def insult_generator():
 
 if __name__ == "__main__":
     twitter = TwitterAPI()
+<<<<<<< HEAD
     compareIDs()
+=======
+    compare_ids()
+>>>>>>> origin/master
