@@ -1,7 +1,7 @@
+#!/usr/bin/env Python3
 import tweepy
 import random
-from credentials import keys
-# from freshness import create_check, set_ltweet, log_ltweet
+from bard_credentials import keys
 
 
 class TwitterAPI:
@@ -23,21 +23,18 @@ class TwitterAPI:
     def scrape_tweet_id(self, user):
         s_list = self.api.user_timeline(screen_name=user, count=1)
         s = s_list[0]
-        new_tweet_id = s.id
-        # create_check()
-        # last_log_id = set_ltweet()
+        new_tweet_id = s.id        
         return new_tweet_id
 
 
 def compare_ids():
     new_trump_id = twitter.scrape_tweet_id('@realdonaldtrump')
     last_tweet_id = twitter.scrape_tweet_id('@BardVs45')
+    print("New Trump tweet id is {}".format(new_trump_id))
+    print("Last tweet id was {}".format(last_tweet_id))
     if new_trump_id > last_tweet_id:
         message = insult_generator()
-        twitter.trump_reply(new_trump_id, message)
-        print("New Trump tweet id is {}".format(new_trump_id))
-        print("Last tweet id was {}".format(last_tweet_id))
-        # log_ltweet(new_trump_id)
+        twitter.trump_reply(new_trump_id, message)        
     else:
         pass
 
@@ -228,12 +225,15 @@ def insult_generator():
     c1 = random.randint(0, 59)
     c2 = random.randint(0, 61)
     c3 = random.randint(0, 59)
-
-    insult = "Thou art a " + column1[c1] + " " + column2[c2] + " " + column3[c3] + ", @realdonaldtrump"
+    word = list(column1[c1])    
+    if word[0] in ["a", "e", "i", "o", "u"]:
+        insult = "Thou art an " + column1[c1] + " " + column2[c2] + " " + column3[c3] + ", @realdonaldtrump"
+    else:
+        insult = "Thou art a " + column1[c1] + " " + column2[c2] + " " + column3[c3] + ", @realdonaldtrump"
+    print(insult)
     return insult
 
 
 if __name__ == "__main__":
     twitter = TwitterAPI()
     compare_ids()
-
