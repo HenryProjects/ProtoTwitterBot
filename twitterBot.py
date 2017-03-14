@@ -1,7 +1,7 @@
 import tweepy
 import random
 from credentials import keys
-from freshness import create_check, set_ltweet, log_ltweet
+# from freshness import create_check, set_ltweet, log_ltweet
 
 
 class TwitterAPI:
@@ -24,18 +24,19 @@ class TwitterAPI:
         s_list = self.api.user_timeline(screen_name=user, count=1)
         s = s_list[0]
         new_tweet_id = s.id
-        create_check()
-        last_log_id = set_ltweet()
-        return new_tweet_id, last_log_id
+        # create_check()
+        # last_log_id = set_ltweet()
+        return new_tweet_id
 
 
 def compare_ids():
-    new_trump_id, last_log_id = twitter.scrape_tweet_id()
-    if new_trump_id > last_log_id:
+    new_trump_id = twitter.scrape_tweet_id('@realdonaldtrump')
+    last_tweet_id = twitter.scrape_tweet_id('@BardVs45')
+    if new_trump_id > last_tweet_id:
         message = insult_generator()
         twitter.trump_reply(new_trump_id, message)
         print(new_trump_id)
-        log_ltweet(new_trump_id)
+        # log_ltweet(new_trump_id)
     else:
         pass
 
