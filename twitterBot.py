@@ -228,7 +228,7 @@ def insult_generator():
     c2 = random.randint(0, 61)
     c3 = random.randint(0, 59)
 
-    insult = ".@realdonaldtrump Thou " + column1[c1] + " " + column2[c2] + " " + column3[c3] + "!"
+    insult = "Thou art a " + column1[c1] + " " + column2[c2] + " " + column3[c3] + ", @realdonaldtrump"
     return insult
 
 
