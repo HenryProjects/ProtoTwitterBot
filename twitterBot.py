@@ -20,17 +20,17 @@ class TwitterAPI:
     def trump_reply(self, new_trump_id, message):
         self.api.update_status(status=message, in_reply_to_status_id=new_trump_id)
 
-    def scrape_trump(self):
-        s_list = self.api.user_timeline(screen_name='@realdonaldtrump', count=1)
+    def scrape_tweet_id(self, user):
+        s_list = self.api.user_timeline(screen_name=user, count=1)
         s = s_list[0]
-        new_trump_id = s.id
+        new_tweet_id = s.id
         create_check()
         last_log_id = set_ltweet()
-        return new_trump_id, last_log_id
+        return new_tweet_id, last_log_id
 
 
 def compare_ids():
-    new_trump_id, last_log_id = twitter.scrape_trump()
+    new_trump_id, last_log_id = twitter.scrape_tweet_id()
     if new_trump_id > last_log_id:
         message = insult_generator()
         twitter.trump_reply(new_trump_id, message)
