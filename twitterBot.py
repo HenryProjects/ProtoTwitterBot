@@ -1,12 +1,8 @@
 import tweepy
 import random
 from credentials import keys
-<<<<<<< HEAD
-from freshness import *
-=======
 from freshness import create_check, set_ltweet, log_ltweet
 
->>>>>>> origin/master
 
 class TwitterAPI:
     def __init__(self):
@@ -21,26 +17,6 @@ class TwitterAPI:
     def tweet(self, message):
         self.api.update_status(status=message)
 
-<<<<<<< HEAD
-
-    def trumpReply(self, new_trump_id, message):
-        self.api.update_status(status=message,in_reply_to_status_id=new_trump_id)
-
-
-    def scrapeTrump(self):
-        s = self.api.user_timeline(user_id='@realdonaldtrump',count=1)
-        new_trump_id = s.id
-        last_log_id = setLtweet(new_trump_id)
-        return new_trump_id, last_log_id
-
-
-def compareIDs():
-    new_trump_id, last_log_id = twitter.scrapeTrump()
-    if new_trump_id > last_log_id:
-        message = insult_generator()
-        twitter.trumpReply(new_trump_id, message)
-        logLtweet(new_trump_id)
-=======
     def trump_reply(self, new_trump_id, message):
         self.api.update_status(status=message, in_reply_to_status_id=new_trump_id)
 
@@ -60,7 +36,6 @@ def compare_ids():
         twitter.trump_reply(new_trump_id, message)
         print(new_trump_id)
         log_ltweet(new_trump_id)
->>>>>>> origin/master
     else:
         pass
 
@@ -258,8 +233,5 @@ def insult_generator():
 
 if __name__ == "__main__":
     twitter = TwitterAPI()
-<<<<<<< HEAD
-    compareIDs()
-=======
     compare_ids()
->>>>>>> origin/master
+
