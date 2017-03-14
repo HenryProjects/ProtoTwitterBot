@@ -35,7 +35,8 @@ def compare_ids():
     if new_trump_id > last_tweet_id:
         message = insult_generator()
         twitter.trump_reply(new_trump_id, message)
-        print(new_trump_id)
+        print("New Trump tweet id is {}".format(new_trump_id))
+        print("Last tweet id was {}".format(last_tweet_id))
         # log_ltweet(new_trump_id)
     else:
         pass
