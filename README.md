@@ -2,7 +2,7 @@
 First ever Twitterbot for Henry Projects--keeping it simple!
 ***
 ## Dependencies:
-*tweepy
+--tweepy
 
 ### Build history:
 *The first build simply posted a random insult to its own wall, directing it @realdonaldtrump. This was the minimum viable product, and it was mainly so we could get something up and running on Heroku.
